@@ -88,7 +88,7 @@ public class CombatLevelExpansion extends PlaceholderExpansion {
 	 */
 	@Override
 	public String getVersion() {
-		return "1.0.0";
+		return "1.0.1";
 	}
 
 	/**
@@ -104,7 +104,15 @@ public class CombatLevelExpansion extends PlaceholderExpansion {
 
 		// %combatlevel_level%
 		if (identifier.equals("level")) {
-			return String.valueOf(plugin.getCombatLevel(p));
+			@SuppressWarnings("unlikely-arg-type")
+			Integer level = plugin.getPlayerLevels().get(p);
+			if (level != null) {
+				return String.valueOf(level);
+			} else if (level == 0) {
+				return String.valueOf(0);
+			} else {
+				return String.valueOf(0);
+			}
 
 		}
 		// %combatlevel_XXX%
